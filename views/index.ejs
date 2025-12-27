@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dermalyva KDS | Yönetici Paneli</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="dashboard-wrapper">
+        <header>
+            <div class="brand">
+                <h1>Dermalyva <span class="highlight">KDS</span></h1>
+                <small>Karar Destek Sistemi v1.0</small>
+            </div>
+            <div class="user-info">
+                <span>Pazarlama Müdürü</span>
+                <div class="avatar">PM</div>
+            </div>
+        </header>
+
+        <div class="kds-grid">
+
+            <div class="kds-card module-region strategy-command-interface">
+                <div class="card-content">
+                    <div class="card-header">
+                        <div>
+                            <h3>Bölgesel Büyüme Stratejisi</h3>
+                            <small style="color:var(--text-muted); font-size: 0.8rem;">Operasyonel Genişleme Planı Q3-Q4</small>
+                        </div>
+                        <div class="strategy-badge-tech">
+                            <span class="pulse-indicator"></span> 
+                            Odak: Batı Hattı
+                        </div>
+                    </div>
+
+                    <div class="strategic-map-container">
+                        <div class="map-grid-overlay"></div>
+                        <svg class="growth-flow-svg" viewBox="0 0 500 180" preserveAspectRatio="xMidYMid meet">
+                            <defs>
+                                <linearGradient id="flowGradBlue" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:var(--accent-blue);stop-opacity:0.1" /><stop offset="100%" style="stop-color:var(--accent-blue);stop-opacity:0.8" /></linearGradient>
+                                <linearGradient id="flowGradGreen" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:var(--accent-green);stop-opacity:0.1" /><stop offset="100%" style="stop-color:var(--accent-green);stop-opacity:0.8" /></linearGradient>
+                            </defs>
+                            <path class="flow-path primary-flow" d="M 100 140 C 150 80, 280 60, 400 40" stroke="url(#flowGradGreen)" />
+                            <path class="flow-path secondary-flow" d="M 100 140 C 200 150, 300 130, 420 100" stroke="url(#flowGradBlue)" />
+                        </svg>
+
+                        <div class="city-hub hub-izmir main-base">
+                            <div class="hub-core-container"><div class="hub-ripple"></div><div class="hub-core">🏢</div></div>
+                            <div class="hub-details text-blue"><strong>İzmir</strong><span class="hub-metric">+18.2%</span></div>
+                        </div>
+                        <div class="city-hub hub-istanbul prime-target">
+                             <div class="hub-core-container"><div class="hub-ripple icon-green"></div><div class="hub-core icon-green">🎯</div></div>
+                            <div class="hub-details text-green"><strong>İstanbul</strong><span class="hub-metric">+24.5%</span></div>
+                        </div>
+                        <div class="city-hub hub-ankara competitive-zone">
+                             <div class="hub-core-container"><div class="hub-core icon-red">⚔️</div></div>
+                            <div class="hub-details text-red"><strong>Ankara</strong><span class="hub-metric">-3.1%</span></div>
+                            <div class="hub-warning-line"></div>
+                        </div>
+                    </div>
+
+                    <div class="city-strategy-grid">
+                        <div class="strategy-col col-blue">
+                            <div class="sc-header"><strong>İZMİR</strong><span class="sc-role-badge">Merkez Üs</span></div>
+                            <ul class="sc-reasons"><li><span>📦</span> Güçlü lojistik ağı</li><li><span>💎</span> %85 Sadık müşteri</li></ul>
+                            <div class="sc-action">🚀 <strong>Hızlandır:</strong> Mevcut potansiyeli ölçekle.</div>
+                        </div>
+                        <div class="strategy-col col-green">
+                            <div class="sc-header"><strong>İSTANBUL</strong><span class="sc-role-badge">Büyüme Motoru</span></div>
+                            <ul class="sc-reasons"><li><span>📈</span> Dijital ROI zirvede</li><li><span>👥</span> Yeni müşteri akışı</li></ul>
+                            <div class="sc-action">🎯 <strong>Hedef:</strong> Agresif büyüme planla.</div>
+                        </div>
+                        <div class="strategy-col col-red">
+                            <div class="sc-header"><strong>ANKARA</strong><span class="sc-role-badge">Risk Bölgesi</span></div>
+                            <ul class="sc-reasons"><li><span>⚔️</span> Rekabet çok yoğun</li><li><span>📉</span> Dönüşüm düşük</li></ul>
+                            <div class="sc-action">🛡️ <strong>Koru:</strong> Savunma odaklı ilerle.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kds-card module-budget">
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3>Yıllık Pazarlama Bütçesi</h3>
+                        <span class="badge-green">₺ +26.6% ROI</span>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                    <div class="budget-insights">
+                        <div class="insight-box success">
+                            <div class="i-icon">🏆</div>
+                            <div class="i-content"><small>En Verimli Ay</small><span id="best-month">Hesaplanıyor...</span></div>
+                        </div>
+                        <div class="insight-box warning">
+                            <div class="i-icon">⚠️</div>
+                            <div class="i-content"><small>İyileştirme Gereken</small><span id="worst-month">Hesaplanıyor...</span></div>
+                        </div>
+                        <div class="insight-box suggestion">
+                            <div class="i-icon">💡</div>
+                            <div class="i-content"><small>2026 Önerisi</small><span id="budget-suggest">Hesaplanıyor...</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kds-card module-campaign">
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3>Kampanya ROI Karnesi</h3>
+                        <div class="legend-simple">
+                            <span class="dot-blue"></span> <small style="color:var(--text-muted)">Bütçe</small>
+                            <span class="dot-green" style="margin-left:10px;"></span> <small style="color:var(--text-muted)">Ciro</small>
+                        </div>
+                    </div>
+                    <div class="campaign-list-container" id="campaign-list-area">
+                        <div class="loading-text">Veriler Analiz Ediliyor...</div>
+                    </div>
+                </div>
+                <div class="campaign-summary-footer">
+                    <div class="cs-stat"><small>Toplam Net Kâr</small><span class="text-green" id="total-net-profit">--</span></div>
+                    <div class="cs-divider"></div>
+                    <div class="cs-stat"><small>Ortalama ROAS</small><span class="text-blue" id="avg-roas">--</span></div>
+                    <div class="cs-badge-container"><span class="system-badge">🚀 Strateji Başarılı</span></div>
+                </div>
+            </div>
+
+            <div class="kds-card module-bcg">
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3>Ürün Performans Karşılaştırma</h3>
+                    </div>
+                    <div class="comparison-controls">
+                        <div class="select-group">
+                            <span class="dot-blue"></span>
+                            <select id="product-select-1" class="modern-select"><option value="" disabled selected>1. Ürünü Seç</option></select>
+                        </div>
+                        <div class="vs-badge">VS</div>
+                        <div class="select-group">
+                            <span class="dot-pink"></span>
+                            <select id="product-select-2" class="modern-select"><option value="" disabled selected>2. Ürünü Seç (Opsiyonel)</option></select>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                </div>
+                <div class="bcg-summary-footer">
+                    <div class="cs-stat"><small id="footer-label-1">Ürün</small><span class="text-white" id="comp-winner">--</span></div>
+                    <div class="cs-divider"></div>
+                    <div class="cs-stat"><small id="footer-label-2">Analiz</small><span class="text-green" id="comp-diff">--</span></div>
+                </div>
+            </div>
+
+            <div class="kds-card module-simulation">
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3>Perakende Kanal Genişleme Simülatörü</h3>
+                    </div>
+                    
+                    <div class="channel-sim-container">
+                        <div class="channel-section">
+                            <small class="section-label">MEVCUT KANALLAR</small>
+                            <div class="channel-grid">
+                                <div class="channel-item locked">
+                                    <div class="ch-left"><span class="ch-icon">🌐</span> <span class="ch-name">Dermalyva</span></div>
+                                    <label class="switch disabled"><input type="checkbox" checked disabled><span class="slider"></span></label>
+                                </div>
+                                <div class="channel-item locked">
+                                    <div class="ch-left"><span class="ch-icon">🟧</span> <span class="ch-name">Trendyol</span></div>
+                                    <label class="switch disabled"><input type="checkbox" checked disabled><span class="slider"></span></label>
+                                </div>
+                                <div class="channel-item locked">
+                                    <div class="ch-left"><span class="ch-icon">🔵</span> <span class="ch-name">Watsons</span></div>
+                                    <label class="switch disabled"><input type="checkbox" checked disabled><span class="slider"></span></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="potential-channels-frame">
+                            <small class="section-label" style="color:var(--accent-blue)">POTANSİYEL FIRSATLAR</small>
+                            <div class="channel-grid">
+                                <div class="channel-item">
+                                    <div class="ch-left"><span class="ch-icon">🟣</span> <span class="ch-name">Gratis</span></div>
+                                    <label class="switch"><input type="checkbox" onchange="toggleChannel('Gratis', this.checked)"><span class="slider"></span></label>
+                                </div>
+                                <div class="channel-item">
+                                    <div class="ch-left"><span class="ch-icon">🔴</span> <span class="ch-name">Rossmann</span></div>
+                                    <label class="switch"><input type="checkbox" onchange="toggleChannel('Rossmann', this.checked)"><span class="slider"></span></label>
+                                </div>
+                                <div class="channel-item">
+                                    <div class="ch-left"><span class="ch-icon">🌸</span> <span class="ch-name">Eve Shop</span></div>
+                                    <label class="switch"><input type="checkbox" onchange="toggleChannel('Eve', this.checked)"><span class="slider"></span></label>
+                                </div>
+                                <div class="channel-item">
+                                    <div class="ch-left"><span class="ch-icon">⚕️</span> <span class="ch-name">Eczane</span></div>
+                                    <label class="switch"><input type="checkbox" onchange="toggleChannel('Eczane', this.checked)"><span class="slider"></span></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sim-divider"></div>
+
+                        <div class="sim-metrics-row">
+                            <div class="metric-box">
+                                <small>Tahmini Net Kâr</small>
+                                <span class="text-green big-num" id="sim-total-profit">₺2.8M</span>
+                                <span class="sim-delta" id="profit-delta">Değişim Yok</span>
+                            </div>
+                            
+                            <div class="metric-box">
+                                <small>Marka Görünürlüğü</small>
+                                <div class="progress-bar thin">
+                                    <div class="progress-fill" id="sim-visibility-bar" style="width: 55%; background:var(--accent-blue)"></div>
+                                </div>
+                                <span class="text-blue" id="sim-visibility-text">%55</span>
+                            </div>
+
+                            <div class="metric-box">
+                                <small>Kâr Marjı</small>
+                                <span class="text-purple big-num" id="sim-margin">%60</span>
+                            </div>
+                        </div>
+
+                        <div class="sim-advice-bar" id="sim-advice">
+                            Mevcut durum stabil. Yeni kanal eklemek ciro artırır.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kds-card module-pricing price-card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3>Fiyat Esnekliği Simülatörü</h3>
+                        <span class="badge-pink" id="price-badge">% +0</span>
+                    </div>
+                    <div class="slider-container">
+                        <label>Fiyat Ayarlaması</label>
+                        <input type="range" min="-20" max="20" value="0" step="5" id="priceSlider" oninput="updatePriceSim(this.value)">
+                        <div class="slider-labels"><span>-20%</span><span>0%</span><span>+20%</span></div>
+                    </div>
+                    <div class="prediction-boxes">
+                        <div class="p-box"><small>Tahmini Talep</small><h4 class="text-blue" id="pred-demand">--</h4></div>
+                        <div class="p-box"><small>Tahmini Kâr</small><h4 class="text-green" id="pred-profit">--</h4></div>
+                    </div>
+                    <div class="chart-wrapper small"><canvas id="priceChart"></canvas></div>
+                </div>
+            </div>
+
+            <div class="kds-card full-width module-trend">
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3>Ar-Ge Trend Analizi & Stratejik Öneriler</h3>
+                        <button class="btn-pill-purple">8 Aktif İçerik Takipte</button>
+                    </div>
+                    <div class="trend-grid" id="trend-container"></div>
+                    <div class="trend-insights-panel">
+                        <div class="insight-badge high-potential">
+                            <span class="badge-icon">🔥</span>
+                            <div><strong>Yüksek Potansiyel: Niacinamide</strong><small>Arama hacmi %65 arttı. Yeni leke serumunda kullanılması önerilir.</small></div>
+                        </div>
+                        <div class="insight-badge stable">
+                            <span class="badge-icon">✅</span>
+                            <div><strong>Güvenli Liman: Hyaluronik Asit</strong><small>Pazarın vazgeçilmezi. Nemlendirici serisinde ana içerik olarak kalmalı.</small></div>
+                        </div>
+                        <div class="insight-badge declining">
+                            <span class="badge-icon">📉</span>
+                            <div><strong>Düşüş Alarmı: Peptit</strong><small>İlgi azalıyor. Stok maliyetini düşürmek için üretimi kısabilirsiniz.</small></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>
