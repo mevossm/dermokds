@@ -36,8 +36,8 @@ Burada yöneticiler için 7 kritik karar noktası simüle ediliyor:
 2. Admin Paneli & İş Kuralları (Back-End Logic)
 Sadece veri göstermekle kalmadım, arka planda veri bütünlüğünü koruyan kurallar yazdım:
 
-🛡️ Senaryo 1 (Fiyat Güvenliği): Yeni ürün eklerken fiyatı 0 veya eksi giremezsiniz. Stok adedi negatif olamaz. Sistem bunu sunucu tarafında engeller.
+ Senaryo 1 (Fiyat Güvenliği): Yeni ürün eklerken fiyatı 0 veya eksi giremezsiniz. Stok adedi negatif olamaz. Sistem bunu sunucu tarafında engeller.
 
-🔒 Senaryo 2 (Silme Koruması): Eğer bir ürünün geçmişte satışı varsa, o ürünü silemezsiniz. Bu sayede geçmiş raporların bozulmasını engelliyoruz.
+ Senaryo 2 (Silme Koruması): Eğer bir ürünün geçmişte satışı varsa, o ürünü silemezsiniz. Bu sayede geçmiş raporların bozulmasını engelliyoruz.
 
 Hazırlayan, Yönetim Bilişim Sistemleri 3. sınıf öğrencisi Meva Özen.
