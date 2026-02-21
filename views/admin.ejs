@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dermalyva | Ürün Yönetim Paneli</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { background: #0B1120; color: white; font-family: 'Inter', sans-serif; padding: 40px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { border-bottom: 1px solid #334155; padding-bottom: 20px; }
+        
+        /* Form Stili */
+        .form-card { background: #1e293b; padding: 20px; border-radius: 10px; margin-bottom: 30px; border: 1px solid #334155; }
+        input, select { background: #0f172a; border: 1px solid #334155; color: white; padding: 10px; border-radius: 5px; margin-right: 10px; }
+        button { background: #0EA5E9; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 600; }
+        button:hover { background: #0284c7; }
+
+        /* Tablo Stili */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { text-align: left; color: #94a3b8; padding: 10px; border-bottom: 1px solid #334155; }
+        td { padding: 15px 10px; border-bottom: 1px solid #1e293b; }
+        .btn-delete { background: #EF4444; color: white; padding: 5px 12px; text-decoration: none; border-radius: 4px; font-size: 0.8rem; }
+        .btn-dashboard { background: #10B981; padding: 10px 20px; text-decoration: none; color: white; border-radius: 5px; display: inline-block; margin-bottom: 20px;}
+
+        /* Uyarı Mesajları */
+        .alert { padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .alert-error { background: rgba(239, 68, 68, 0.2); border: 1px solid #EF4444; color: #FCA5A5; }
+        .alert-success { background: rgba(16, 185, 129, 0.2); border: 1px solid #10B981; color: #6EE7B7; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="btn-dashboard">← Dashboard'a Dön</a>
+        
+        <h1>Ürün Yönetim Paneli (CRUD)</h1>
+
+        <% if (error) { %> <div class="alert alert-error">⚠️ <%= error %></div> <% } %>
+        <% if (success) { %> <div class="alert alert-success">✅ <%= success %></div> <% } %>
+
+        <div class="form-card">
+            <h3>Yeni Ürün Ekle</h3>
+            <form action="/admin/add" method="POST">
+                <input type="text" name="urun_adi" placeholder="Ürün Adı" required>
+                <select name="kategori">
+                    <option value="Serum">Serum</option>
+                    <option value="Krem">Krem</option>
+                    <option value="Temizleyici">Temizleyici</option>
+                </select>
+                <input type="number" name="satis_fiyati" placeholder="Fiyat (TL)" step="0.01" required>
+                <input type="number" name="stok_adedi" placeholder="Stok" required>
+                <button type="submit">+ Ekle</button>
+            </form>
+            <small style="color:#94a3b8; display:block; margin-top:10px;">* İş Kuralı: Fiyat 0 veya negatif girilemez.</small>
+        </div>
+
+        <h3>Mevcut Ürünler</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ürün Adı</th>
+                    <th>Kategori</th>
+                    <th>Fiyat</th>
+                    <th>Stok</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% urunler.forEach(urun => { %>
+                <tr>
+                    <td>#<%= urun.urun_id %></td>
+                    <td><%= urun.urun_adi %></td>
+                    <td><%= urun.kategori %></td>
+                    <td>₺<%= urun.satis_fiyati %></td>
+                    <td><%= urun.stok_adedi %></td>
+                    <td>
+                        <a href="/admin/delete/<%= urun.urun_id %>" class="btn-delete" onclick="return confirm('Bu ürünü silmek istediğinize emin misiniz?');">Sil</a>
+                    </td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <small style="color:#94a3b8; display:block; margin-top:20px;">* İş Kuralı: Satış geçmişi olan ürünler silinemez.</small>
+    </div>
+</body>
+</html> 
